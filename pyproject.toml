@@ -1,0 +1,25 @@
+[project]
+name = "use-case-analysis"
+version = "0.1.0"
+description = "Test case generation prompts, skills, SQLite knowledge store, and read-only API tools."
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "openpyxl>=3.1.5",
+]
+
+[project.scripts]
+init-knowledge-db = "tools.init_knowledge_db:main"
+case-api = "tools.case_api:main"
+agent-context = "tools.agent_context:main"
+export-cases-excel = "tools.export_cases_excel:main"
+case-draft = "tools.case_draft:main"
+knowledge-store = "tools.knowledge_store:main"
+case-sync = "tools.case_sync:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tools"]
