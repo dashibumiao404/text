@@ -21,6 +21,7 @@ from tools.case_api import (
     DEFAULT_VECTOR_SCORE_THRESHOLD,
     SemanticCaseClient,
 )
+from tools.knowledge_db import ensure_knowledge_db
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -263,6 +264,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main() -> None:
+    ensure_knowledge_db()
     parser = build_parser()
     args = parser.parse_args()
     if args.command == "infer-tags":

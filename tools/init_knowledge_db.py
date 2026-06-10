@@ -328,14 +328,19 @@ SEED_SQL = [
 ]
 
 
-def main() -> None:
+def initialize_knowledge_db(*, verbose: bool = True) -> None:
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     with sqlite3.connect(DB_PATH) as conn:
         conn.executescript(SCHEMA_SQL)
         for sql, params in SEED_SQL:
             conn.execute(sql, params)
         conn.commit()
-    print(f"Initialized knowledge DB at {DB_PATH}")
+    if verbose:
+        print(f"Initialized knowledge DB at {DB_PATH}")
+
+
+def main() -> None:
+    initialize_knowledge_db()
 
 
 if __name__ == "__main__":

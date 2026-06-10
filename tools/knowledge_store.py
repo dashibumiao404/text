@@ -8,6 +8,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from tools.knowledge_db import ensure_knowledge_db
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DB_PATH = ROOT / "knowledge" / "knowledge.db"
@@ -449,6 +451,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main() -> None:
+    ensure_knowledge_db()
     args = build_parser().parse_args()
     args.func(args)
 
